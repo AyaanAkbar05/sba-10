@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+A simple and clean React + TypeScript application that allows users to browse recipes, explore categories, search meals, view detailed recipe information, and save favorite recipes.
+All data is fetched from TheMealDB, a free public API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project showcases:
 
-Currently, two official plugins are available:
+React Router for page navigation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Context API for global favorites management
 
-## React Compiler
+Custom hooks (useFetch, useLocalStorage)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tailwind CSS for basic styling
 
-## Expanding the ESLint configuration
+Fully client-side SPA
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Getting Started
+1. Install Dependencies
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Run the Development Server
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. Open in browser
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Vite will show a local URL (usually http://localhost:5173/).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Features
+✔ Browse categories
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Home page lists all recipe categories.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+✔ View meals in a category
+
+Clicking a category shows recipes inside that category.
+
+✔ Detailed recipe page
+
+Displays ingredients, instructions, and an option to favorite/unfavorite.
+
+✔ Save favorites
+
+Favorites are stored globally using Context + saved in localStorage.
+
+✔ Search recipes
+
+Search bar in the Navbar allows searching by meal name.
+
+✔ Favorites page
+
+A dedicated page that lists all user-saved recipes.
+
+✔ Responsive UI with Tailwind
+
+Simple but clean layout with Tailwind CSS.
+
+# Reflection
+
+1. Most challenging part
+
+The most challenging part of this project was organizing the API flow and making sure different pages reused the same fetching logic. Creating a reusable custom hook (useFetch) helped structure this in a clean way.
+
+2. Design decision
+
+A key design decision was using Context API + useLocalStorage to manage favorite recipes.
+Instead of prop-drilling through multiple components, the context gives global access to favorites, while useLocalStorage ensures favorites persist across refreshes.
+This kept the codebase simple and prevented unnecessary state duplication.
